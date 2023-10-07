@@ -16,6 +16,22 @@ def get_operator(op):
     first_num = int(result_label['text'])
     operator = op
     result_label.config(text = '')
+
+def get_result():
+    global first_num,second_num,operator
+    second_num = int(result_label['text'])
+    if operator == '+':
+        result_label.config(text = str(first_num+second_num))
+    elif operator == '-':
+        result_label.config(text = str(first_num-second_num))
+    elif operator == "/":
+        result_label.config(text = str(first_num/second_num))
+    else:
+        if second_num != 0:
+            result_label.config(text= str(first_num*second_num))
+        else:
+            result_label.config(text = 'Error')
+
 root = Tk()
 root.title('Calculator')
 root.geometry('270x410')
@@ -116,7 +132,7 @@ btnmult =  Button(root, text = 'x', bg = '#D47970', fg= 'white', width = 4,heigh
 btnmult.grid(row =5, column = 3)
 btnmult.config(font=('young serif',15))
 
-btneq =  Button(root, text = '=', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btneq =  Button(root, text = '=', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command= get_result)  #we don't have to use lambda here as there is no parameter
 btneq.grid(row =5, column = 4)
 btneq.config(font=('young serif',15))
 root.mainloop()
