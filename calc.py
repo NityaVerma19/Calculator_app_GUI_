@@ -1,10 +1,21 @@
 from tkinter import *
 
+first_num = second_num = operator = None
+
 def get_digit(digit):
     current = result_label['text']
     new = current + str(digit)
     result_label.config(text = new)
 
+def clear():
+    result_label.config(text = '')
+
+def get_operator(op):
+    global first_num,operator
+
+    first_num = int(result_label['text'])
+    operator = op
+    result_label.config(text = '')
 root = Tk()
 root.title('Calculator')
 root.geometry('270x410')
@@ -20,7 +31,7 @@ result_label = Label(root,
 result_label.grid(row=0,column = 0,columnspan = 5,pady = (30,35),sticky = 'w')
 result_label.configure(font=('young serif',15))
 
-btnC= Button(root, text = 'C', bg = '#D47970', fg= 'white', width = 4,height = 2)
+btnC= Button(root, text = 'C', bg = '#D47970', fg= 'white', width = 4,height = 2, command = lambda:clear())
 btnC.grid(row = 1, column = 0)
 btnC.config(font=('young serif',15))
 
@@ -45,7 +56,7 @@ btn9 = Button(root, text = '9', bg = '#D47970', fg= 'white', width = 4,height = 
 btn9.grid(row = 2, column = 3)
 btn9.config(font=('young serif',15))
 
-btnsum = Button(root, text = '+', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btnsum = Button(root, text = '+', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command = lambda : get_operator('+'))
 btnsum.grid(row = 2, column = 4)
 btnsum.config(font=('young serif',15))
 
@@ -65,7 +76,7 @@ btn6 = Button(root, text = '6', bg = '#D47970', fg= 'white', width = 4,height = 
 btn6.grid(row = 3, column = 3)
 btn6.config(font=('young serif',15))
 
-btnmin = Button(root, text = '-', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btnmin = Button(root, text = '-', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center',command = lambda : get_operator('-'))
 btnmin.grid(row =3, column = 4)
 btnmin.config(font=('young serif',15))
 
@@ -85,7 +96,7 @@ btn3 = Button(root, text = '3', bg = '#D47970', fg= 'white', width = 4,height = 
 btn3.grid(row = 4, column = 3)
 btn3.config(font=('young serif',15))
 
-btndiv = Button(root, text = '÷', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btndiv = Button(root, text = '÷', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center',command = lambda : get_operator('/'))
 btndiv.grid(row =4, column =4 )
 btndiv.config(font=('young serif',15))
 
@@ -101,9 +112,9 @@ btnln =  Button(root, text = 'ln', bg = '#D47970', fg= 'white', width = 4,height
 btnln.grid(row =5, column = 2)
 btnln.config(font=('young serif',15))
 
-btnexp =  Button(root, text = 'e', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
-btnexp.grid(row =5, column = 3)
-btnexp.config(font=('young serif',15))
+btnmult =  Button(root, text = 'x', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command=lambda : get_operator('x'))
+btnmult.grid(row =5, column = 3)
+btnmult.config(font=('young serif',15))
 
 btneq =  Button(root, text = '=', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
 btneq.grid(row =5, column = 4)
