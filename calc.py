@@ -7,6 +7,7 @@ def get_digit(digit):
     new = current + str(digit)
     result_label.config(text = new)
 
+
 def clear():
     result_label.config(text = '')
 
@@ -24,13 +25,17 @@ def get_result():
         result_label.config(text = str(first_num+second_num))
     elif operator == '-':
         result_label.config(text = str(first_num-second_num))
-    elif operator == "/":
-        result_label.config(text = str(first_num/second_num))
-    else:
+    elif operator == "x":
+        result_label.config(text = str(first_num*second_num))
+    elif operator == '÷':
         if second_num != 0:
-            result_label.config(text= str(first_num*second_num))
+            result_label.config(text= str(first_num/second_num))
         else:
             result_label.config(text = 'Error')
+    elif operator == '√':
+        result_label.config(text=str(math.sqrt(first_num)))
+
+
 
 root = Tk()
 root.title('Calculator')
@@ -50,19 +55,26 @@ result_label.configure(font=('young serif',15))
 btnC= Button(root, text = 'C', bg = '#D47970', fg= 'white', width = 4,height = 2, command = lambda:clear())
 btnC.grid(row = 1, column = 0)
 btnC.config(font=('young serif',15))
-
+'''
 btnbrac =  Button(root, text = '()', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
 btnbrac.grid(row =1, column =1 )
-btnbrac.config(font=('young serif',15))
+btnbrac.config(font=('young serif',15)
+'''
+btnrightprac = Button(root , text = ')', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command=lambda: get.digit(")"))
+btnrightprac.grid(row = 1, column = 1)
+btnrightprac.config(font=('young serif',15))
 
-btnroot =  Button(root, text = '√', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btnleftprac = Button(root , text = '(', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command=lambda: get.digit("("))
+btnleftprac.grid(row = 1, column = 0)
+btnleftprac.config(font=('young serif',15))
+
+btnroot =  Button(root, text = '√', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center',command = lambda : get_operator('√'))
 btnroot.grid(row = 2, column = 0)
 btnroot.config(font=('young serif',15))
 
 btn7= Button(root, text = '7', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center', command = lambda :get_digit(7))
 btn7.grid(row = 2, column = 1)
 btn7.config(font=('young serif',15))
-
 
 btn8 = Button(root, text = '8', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center',command = lambda :get_digit(8))
 btn8.grid(row = 2, column = 2)
@@ -76,7 +88,7 @@ btnsum = Button(root, text = '+', bg = '#D47970', fg= 'white', width = 4,height 
 btnsum.grid(row = 2, column = 4)
 btnsum.config(font=('young serif',15))
 
-btnsq =  Button(root, text = 'x²', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center')
+btnsq =  Button(root, text = 'x²', bg = '#D47970', fg= 'white', width = 4,height = 2,justify = 'center',)
 btnsq.grid(row = 3, column = 0)
 btnsq.config(font=('young serif',15))
 
